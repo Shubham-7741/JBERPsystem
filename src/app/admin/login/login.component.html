@@ -1,0 +1,71 @@
+<div
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-around center"
+>
+  <mat-card>
+    <mat-card-title>
+      <div class="user ps-2">
+        <!-- <img src="../../../assets/Images/E-prachar2.png" alt="E-प्रचार" height="250px" width="250px" /> -->
+        <img
+          src="../../../assets/image/JBLogo.jpg"
+          alt="logo"
+          style="border-radius: 10%"
+          height="150px"
+          width="150px"
+        />
+
+        <!-- <p class="mail">admin@gmail.com</p> src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png"-->
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <h2>Login Info</h2>
+      <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Email or Mobile no.</mat-label>
+          <input
+            matInput
+            placeholder="example12@gmail.com OR Mobile No."
+            formControlName="email"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            placeholder="Enter your password"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword"
+            type="button"
+          >
+            <mat-icon>{{
+              hidePassword ? "visibility_off" : "visibility"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div
+          class="pb-3"
+          fxLayout="row wrap"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-around center"
+          fxLayoutGap="25px"
+        >
+          <button type="submit" mat-raised-button color="primary">Login</button>
+          <!-- <a routerLink="/register" mat-raised-button color="accent">Register</a> -->
+        </div>
+        <!-- <div class="text-primary">
+          <a id="forgot" data-bs-toggle="modal" data-bs-target="#exampleModal" style="text-decoration: none; font-weight: bold">Forgot Password?</a>
+        </div> -->
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

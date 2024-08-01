@@ -1,0 +1,29 @@
+.mark-attendance-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.attendance-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mat-card {
+  padding: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.image-preview {
+  text-align: center;
+}

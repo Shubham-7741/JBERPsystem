@@ -1,0 +1,304 @@
+<div class="main-div" style="padding-top: 20px">
+  <div class="py-2">
+    <div class="card p-3 me-4 px-md-5 py-3">
+      <mat-card-title>
+        <h2 class="py-2 border-bottom">
+          <i class="fa-solid fa-user"></i> Teachers Details
+        </h2>
+      </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="updateTeacherForm" class="row g-3">
+          <!-- Teacher Name -->
+          <!-- <div class="col-md-6">
+            <label for="name" class="form-label">
+              <b>Teacher Name</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+              placeholder="Teacher Name"
+            />
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('name')?.errors?.['required'] && (updateTeacherForm.get('name')?.dirty || updateTeacherForm.get('name')?.touched)"
+            >
+              Name is required.
+            </div>
+          </div> -->
+          <!-- Address -->
+          <div class="col-md-6">
+            <label for="address" class="form-label">
+              <b>Address</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              formControlName="address"
+              placeholder="Address"
+            />
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('address')?.errors?.['required'] && (updateTeacherForm.get('address')?.dirty || updateTeacherForm.get('address')?.touched)"
+            >
+              Address is required.
+            </div>
+          </div>
+          <!-- Contact No. -->
+          <!-- <div class="col-md-6">
+            <label for="mobile" class="form-label">
+              <b>Contact No.</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="tel"
+              id="mobile"
+              maxlength="10"
+              class="form-control"
+              formControlName="mobile"
+              placeholder="Contact No."
+            />
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('mobile')?.errors?.['required'] && (updateTeacherForm.get('mobile')?.dirty || updateTeacherForm.get('mobile')?.touched)"
+            >
+              Contact Number is required.
+            </div>
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('mobile')?.errors?.['pattern'] && (updateTeacherForm.get('mobile')?.dirty || updateTeacherForm.get('mobile')?.touched)"
+            >
+              Contact Number is invalid.
+            </div>
+          </div> -->
+          <!-- Password -->
+          <!-- <div class="col-md-6 position-relative">
+            <label for="password" class="form-label">
+              <b>Enter Password</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Enter Password"
+            />
+            <span
+              class="position-absolute end-0 top-50 translate-middle-y"
+              style="padding-right: 25px; padding-top: 25px"
+            >
+              <i
+                class="fa"
+                [ngClass]="{
+                  'fa-eye-slash': !hidePassword,
+                  'fa-eye': hidePassword
+                }"
+                (click)="togglePasswordVisibility('password')"
+              ></i>
+            </span>
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('password')?.errors?.['required'] && (updateTeacherForm.get('password')?.dirty || updateTeacherForm.get('password')?.touched)"
+            >
+              Password is required.
+            </div>
+          </div> -->
+          <!-- Confirm Password -->
+          <!-- <div class="col-md-6 position-relative">
+            <label for="conPassword" class="form-label">
+              <b>Confirm Password</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="password"
+              id="conPassword"
+              class="form-control"
+              formControlName="conPassword"
+              placeholder="Confirm Password"
+            />
+            <span
+              class="position-absolute end-0 top-50 translate-middle-y"
+              style="padding-right: 25px; padding-top: 25px"
+            >
+              <i
+                class="fa"
+                [ngClass]="{
+                  'fa-eye-slash': !hideCPassword,
+                  'fa-eye': hideCPassword
+                }"
+                (click)="togglePasswordVisibility('conPassword')"
+              ></i>
+            </span>
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('conPassword')?.errors?.['required'] && (updateTeacherForm.get('conPassword')?.dirty || updateTeacherForm.get('conPassword')?.touched)"
+            >
+              Confirm Password is required.
+            </div>
+          </div> -->
+
+          <!-- Email -->
+          <div class="col-md-6">
+            <label for="email" class="form-label">
+              <b>Email</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Email"
+            />
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('email')?.errors?.['required'] && (updateTeacherForm.get('email')?.dirty || updateTeacherForm.get('email')?.touched)"
+            >
+              Email is required.
+            </div>
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('email')?.errors?.['maxlength'] && (updateTeacherForm.get('email')?.dirty || updateTeacherForm.get('email')?.touched)"
+            >
+              Email length is too large.
+            </div>
+          </div>
+          <!-- Teacher Category -->
+          <div class="col-md-6">
+            <label for="category" class="form-label">
+              <b>Teacher's Category</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <div class="input-group">
+              <select
+                id="category"
+                class="form-control"
+                formControlName="teachercategory"
+                (change)="onCategoryChange()"
+              >
+                <option value="" disabled>Select Category</option>
+                <option value="Dance">Dance</option>
+                <option value="Music">Music</option>
+                <option value="Singing">Singing</option>
+                <option value="Custom">Custom</option>
+              </select>
+              <input
+                *ngIf="
+                  updateTeacherForm.get('teachercategory')?.value === 'Custom'
+                "
+                type="text"
+                class="form-control"
+                formControlName="customCategory"
+                placeholder="Enter Custom Category"
+              />
+            </div>
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('teachercategory')?.errors?.['required'] && (updateTeacherForm.get('teachercategory')?.dirty || updateTeacherForm.get('teachercategory')?.touched)"
+            >
+              Teacher's category is required.
+            </div>
+          </div>
+
+          <!-- Batches Dropdown -->
+          <!-- <div class="col-md-6">
+            <label for="batchName" class="form-label">
+              <b>Select School</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <select
+              id="batchName"
+              class="form-control"
+              formControlName="batchName"
+            >
+              <option value="" disabled>Select School</option>
+              <option *ngFor="let batch of batches" [value]="batch.batchName">
+                {{ batch.batchName }}
+              </option>
+            </select>
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('batchName')?.errors?.['required'] && (updateTeacherForm.get('batchName')?.dirty || updateTeacherForm.get('batchName')?.touched)"
+            >
+              School is required.
+            </div>
+          </div> -->
+
+          <!-- Starting Date -->
+          <div class="col-md-6">
+            <label for="startingDate" class="form-label">
+              <b>Starting Date</b>
+              <span class="text-danger fw-bold"> *</span>
+            </label>
+            <input
+              type="date"
+              id="startingDate"
+              class="form-control"
+              formControlName="startingDate"
+            />
+            <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('startingDate')?.errors?.['required'] && (updateTeacherForm.get('startingDate')?.dirty || updateTeacherForm.get('startingDate')?.touched)"
+            >
+              Starting date is required.
+            </div>
+          </div>
+
+          <!-- Teacher Salary -->
+          <div class="col-md-6">
+            <label for="teacherSalary" class="form-label">
+              <b>Teacher Salary</b>
+              <!-- <span class="text-danger fw-bold"> *</span> -->
+            </label>
+            <input
+              type="number"
+              id="teacherSalary"
+              class="form-control"
+              formControlName="teacherSalary"
+              placeholder="Teacher Salary"
+            />
+            <!-- <div
+              class="form-text text-danger fw-bold"
+              *ngIf="updateTeacherForm.get('teacherSalary')?.errors?.['required'] && (updateTeacherForm.get('teacherSalary')?.dirty || updateTeacherForm.get('teacherSalary')?.touched)"
+            >
+              Teacher salary is required.
+            </div> -->
+          </div>
+          <!-- Buttons -->
+          <div class="col-12">
+            <div class="text-center my-3">
+              <button
+                type="button"
+                class="btn btn-primary me-3"
+                *ngIf="showUpdate"
+                (click)="updateTeacherDetails()"
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger me-3"
+                *ngIf="showDelete"
+                (click)="deleteTeacher()"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                routerLink="/list_of_teachers"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </div>
+  </div>
+</div>

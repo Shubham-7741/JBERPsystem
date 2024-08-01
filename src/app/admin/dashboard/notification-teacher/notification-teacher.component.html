@@ -1,0 +1,19 @@
+<div *ngIf="showNotifications" class="notification-container">
+  <h3>Your Notifications</h3>
+  <div *ngIf="notifications.forMe.length">
+    <h4>For Me:</h4>
+    <ul>
+      <li *ngFor="let note of notifications.forMe">
+        {{ note.message }} ({{ note.createdAt | date : "short" }})
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="notifications.ofMyBranch.length">
+    <h4>Of My Branch:</h4>
+    <ul>
+      <li *ngFor="let note of notifications.ofMyBranch">
+        {{ note.message }} ({{ note.createdAt | date : "short" }})
+      </li>
+    </ul>
+  </div>
+</div>

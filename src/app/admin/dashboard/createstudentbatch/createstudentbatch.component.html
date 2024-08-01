@@ -1,0 +1,63 @@
+<div class="main-div" style="padding-top: 20px">
+  <div class="py-2">
+    <div class="card px-5 py-3 me-4">
+      <mat-card-title>
+        <h2 class="py-2 border-bottom">
+          <i class="fa-solid fa-circle-info"></i> Add Students School
+        </h2>
+      </mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="studentBatchForm" (ngSubmit)="postStudentBatch()">
+          <div class="row mb-3">
+            <label for="batchName" class="col-sm-2 col-form-label"
+              >School Name</label
+            >
+            <div class="col-sm-10">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>School Name</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="batchName"
+                  placeholder="School Name"
+                />
+                <mat-error *ngIf="studentBatchForm.get('batchName')?.invalid"
+                  >School Name is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="batchAddress" class="col-sm-2 col-form-label"
+              >School Address</label
+            >
+            <div class="col-sm-10">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>School Address</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  formControlName="batchAddress"
+                  placeholder="School Address"
+                />
+                <mat-error *ngIf="studentBatchForm.get('batchAddress')?.invalid"
+                  >School Address is required</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!studentBatchForm.valid"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </div>
+  </div>
+</div>

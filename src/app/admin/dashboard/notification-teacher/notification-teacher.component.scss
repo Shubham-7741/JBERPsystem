@@ -1,0 +1,11 @@
+.notification-container {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    position: absolute;
+    z-index: 1000;
+    right: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+}

@@ -1,0 +1,106 @@
+<div class="student-form-container">
+  <h2>{{ isEditMode ? "Update Student" : "Create Student" }}</h2>
+  <form [formGroup]="studentForm" (ngSubmit)="submitStudentForm()">
+    <mat-card>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Name" />
+          <mat-error *ngIf="studentForm.get('name')?.invalid"
+            >Name is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email" />
+          <mat-error *ngIf="studentForm.get('email')?.invalid"
+            >Valid email is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <mat-error *ngIf="studentForm.get('password')?.invalid"
+            >Password is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" placeholder="Address" />
+          <mat-error *ngIf="studentForm.get('address')?.invalid"
+            >Address is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Mobile</mat-label>
+          <input
+            matInput
+            formControlName="mobile"
+            placeholder="Mobile"
+            maxlength="10"
+          />
+          <mat-error *ngIf="studentForm.get('mobile')?.invalid"
+            >Valid mobile number is required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Parents Mobile</mat-label>
+          <input
+            matInput
+            formControlName="parentsNumber"
+            placeholder="parentsNumber"
+            maxlength="10"
+          />
+          <mat-error *ngIf="studentForm.get('parentsNumber')?.invalid"
+            >Valid parents Mobile number is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>
+            <b>Select Batch</b>
+          </mat-label>
+          <mat-select id="batchName" formControlName="batchName">
+            <!-- <mat-option value="" disabled>Select Batch</mat-option> -->
+            <mat-option *ngFor="let batch of batches" [value]="batch.batchName">
+              {{ batch.batchName }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="studentForm.get('batchName')?.errors?.['required'] && (studentForm.get('batchName')?.dirty || studentForm.get('batchName')?.touched)"
+          >
+            Batch is required.
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!studentForm.valid"
+          >
+            {{ isEditMode ? "Update" : "Create" }} Student
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            type="button"
+            routerLink="/list_of_students"
+          >
+            Close
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

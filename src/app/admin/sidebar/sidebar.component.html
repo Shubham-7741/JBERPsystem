@@ -1,0 +1,251 @@
+<div class="navbar">
+  <div class="user ps-5">
+    <img
+      src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png"
+      alt=""
+      height="150px"
+      width="150px"
+    />
+    <h4 class="name">
+      {{
+        role === "TEACHER"
+          ? "Teacher"
+          : role === "STUDENT"
+          ? "Student"
+          : "Admin"
+      }}
+    </h4>
+  </div>
+  <div class="menu">
+    <div class="menu-head text-center">
+      <span>Dashboard</span>
+    </div>
+    <div class="menu-item">
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/dashboard']"
+      >
+        <mat-icon>dashboard</mat-icon>
+        <span>Home</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/create_teacher_batch']"
+      >
+        <mat-icon>account_tree</mat-icon>
+        <span>Add Teacher School</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/createmessage_teacher_batch']"
+      >
+        <mat-icon>3p</mat-icon>
+        <span>Add Message</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/create_student_batch']"
+      >
+        <mat-icon>account_tree</mat-icon>
+        <span>Add Student School</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/list_of_events']"
+      >
+        <mat-icon>celebration</mat-icon>
+        <span>All Events</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/list_of_teachers']"
+      >
+        <mat-icon>people</mat-icon>
+        <span>All Teachers</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/list_of_students']"
+      >
+        <mat-icon>people</mat-icon>
+        <span>All Student</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/create_coursesFor_students']"
+      >
+        <mat-icon>add_box</mat-icon>
+        <span>Add Courses</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/create_homeworkFor_students']"
+      >
+        <mat-icon>add_box</mat-icon>
+        <span>Add Homework</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/seeAll_payments']"
+      >
+        <mat-icon>currency_rupee</mat-icon>
+        <span>Payments</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/seeall_pendingLeaves']"
+      >
+        <mat-icon>pending_actions</mat-icon>
+        <span>Pending Leaves</span>
+      </button>
+
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/add_new_event']"
+      >
+        <mat-icon>event_list</mat-icon>
+        <span>Add Events</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/generate_report']"
+      >
+        <mat-icon>summarize</mat-icon>
+        <span>Report Gen.</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/teacher_appraisal']"
+      >
+        <mat-icon>star</mat-icon>
+        <span>Teacher Appraisal</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/task_management']"
+      >
+        <mat-icon>splitscreen_add</mat-icon>
+        <span>Task Management</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/account_information']"
+      >
+        <mat-icon>card_membership</mat-icon>
+        <span>Account Information</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'ADMIN'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/add_new_event']"
+      >
+        <mat-icon>event_list</mat-icon>
+        <span>Add Events</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'TEACHER'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/mark_attendance_teacher']"
+      >
+        <mat-icon>check_circle</mat-icon>
+        <span>Mark Attendance</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'TEACHER'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/add_new_todays_task']"
+      >
+        <mat-icon>task</mat-icon>
+        <span>Add Work</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'TEACHER'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/add_request_for_leave']"
+      >
+        <mat-icon>event_note</mat-icon>
+        <span>Leave</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'STUDENT'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/courses_for_students']"
+      >
+        <mat-icon>school</mat-icon>
+        <span>Courses</span>
+      </button>
+      <button
+        mat-button
+        class="menu-button"
+        *ngIf="role === 'STUDENT'"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/get_homeworkfor_students']"
+      >
+        <mat-icon>school</mat-icon>
+        <span>Homework</span>
+      </button>
+      <button mat-button class="menu-button" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>

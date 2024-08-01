@@ -1,0 +1,84 @@
+<!-- create-course.component.html -->
+<div class="course-form">
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-title>Create New Course</mat-card-title>
+      <mat-card-content>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Course Name</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              placeholder="Enter course name"
+            />
+            <mat-error *ngIf="courseForm.get('name')?.hasError('required')">
+              Course name is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Price</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="price"
+              placeholder="Enter course price"
+            />
+            <mat-error *ngIf="courseForm.get('price')?.hasError('required')">
+              Price is required
+            </mat-error>
+            <mat-error *ngIf="courseForm.get('price')?.hasError('min')">
+              Price cannot be negative
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              formControlName="description"
+              placeholder="Enter course description"
+            ></textarea>
+            <mat-error
+              *ngIf="courseForm.get('description')?.hasError('required')"
+            >
+              Description is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ category }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="courseForm.get('category')?.hasError('required')">
+              Category is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="courseForm.invalid"
+        >
+          Create Course
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

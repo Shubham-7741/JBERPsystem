@@ -1,0 +1,86 @@
+<div class="container my-4">
+  <!-- Upload QR Code Card -->
+  <div class="premium-card">
+    <h2 class="card-title">Upload QR Code</h2>
+    <div class="card-content">
+      <button class="btn btn-primary" *ngIf="!showForm" (click)="toggleForm()">
+        Upload QR
+      </button>
+
+      <div *ngIf="showForm" class="mt-3">
+        <form [formGroup]="qrForm" (ngSubmit)="submitQr()">
+          <div class="mb-3">
+            <label for="qr-upload" class="file-upload-btn">
+              <span>Choose File</span>
+              <input
+                id="qr-upload"
+                type="file"
+                (change)="onFileChange($event)"
+                accept="image/*"
+              />
+            </label>
+            <div
+              *ngIf="qrForm.get('QR')?.hasError('required')"
+              class="error-message"
+            >
+              QR code is required
+            </div>
+          </div>
+
+          <div *ngIf="qrPreview" class="mb-3">
+            <img [src]="qrPreview" alt="QR Code Preview" class="img-preview" />
+          </div>
+
+          <button
+            class="btn btn-submit"
+            type="submit"
+            [disabled]="qrForm.invalid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Payments Card -->
+  <div class="premium-card">
+    <h2 class="card-title">All Payments</h2>
+    <div class="card-content">
+      <button
+        class="btn btn-secondary"
+        *ngIf="!showPayments"
+        (click)="togglePayments()"
+      >
+        Show Payments
+      </button>
+
+      <div *ngIf="showPayments" class="payments-grid">
+        <div class="payment-card" *ngFor="let payment of payments">
+          <img
+            [src]="payment.paymentImage"
+            alt="Payment Image"
+            class="payment-image"
+            (click)="openImage(payment.paymentImage)"
+          />
+          <div class="payment-details">
+            <h3>Transaction ID: {{ payment.txdId }}</h3>
+            <p>Payment By: {{ payment.paymentBy }}</p>
+            <p>Course ID: {{ payment.courseId }}</p>
+            <p>Assigned: {{ payment.assigned }}</p>
+            <button
+              class="btn btn-primary"
+              (click)="approvePayment(payment._id)"
+            >
+              Approve Course
+            </button>
+          </div>
+        </div>
+        <div class="image-modal" *ngIf="imageToShow" (click)="closeImage()">
+          <span class="close">&times;</span>
+          <img class="modal-content" [src]="imageToShow" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

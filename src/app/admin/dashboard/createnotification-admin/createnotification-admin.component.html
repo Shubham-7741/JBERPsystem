@@ -1,0 +1,140 @@
+<div class="notification-form-container py-5">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-md-8 col-lg-6">
+        <div class="form-type-selector text-center">
+          <mat-radio-group
+            [(ngModel)]="selectedForm"
+            class="d-flex justify-content-center"
+          >
+            <mat-radio-button value="batch" class="me-3"
+              >Message for School</mat-radio-button
+            >
+            <mat-radio-button value="teacher"
+              >Message for Teacher</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <!-- Batch Notification Section -->
+    <div *ngIf="selectedForm === 'batch'" class="notification-form">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Select School</mat-label>
+            <mat-select (selectionChange)="onBatchChange($event.value)">
+              <mat-option *ngFor="let batch of batches" [value]="batch._id">
+                {{ batch.batchName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Type your message here...</mat-label>
+            <textarea
+              matInput
+              rows="4"
+              [disabled]="!notificationForm.get('selectedBatchId')?.value"
+              (input)="onMessageChange($event, 'message', notificationForm)"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3 text-center">
+          <button
+            mat-raised-button
+            color="primary"
+            class="submit-btn"
+            (click)="submitNotification()"
+            [disabled]="
+              !notificationForm.get('message')?.value ||
+              !notificationForm.get('selectedBatchId')?.value
+            "
+          >
+            Submit Notification
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teacher Notification Section -->
+    <div *ngIf="selectedForm === 'teacher'" class="notification-form">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Select School</mat-label>
+            <mat-select (selectionChange)="onBatchChange($event.value)">
+              <mat-option *ngFor="let batch of batches" [value]="batch._id">
+                {{ batch.batchName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Select Teacher</mat-label>
+            <mat-select
+              (selectionChange)="onTeacherChange($event.value)"
+              [disabled]="
+                !teacherNotificationForm.get('selectedBatchId')?.value
+              "
+            >
+              <mat-option
+                *ngFor="let teacher of teachers"
+                [value]="teacher._id"
+              >
+                {{ teacher.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Type your message here...</mat-label>
+            <textarea
+              matInput
+              rows="4"
+              [disabled]="
+                !teacherNotificationForm.get('selectedTeacherId')?.value
+              "
+              (input)="
+                onMessageChange($event, 'message', teacherNotificationForm)
+              "
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 mb-3 text-center">
+          <button
+            mat-raised-button
+            color="primary"
+            class="submit-btn"
+            (click)="submitTeacherNotification()"
+            [disabled]="
+              !teacherNotificationForm.get('message')?.value ||
+              !teacherNotificationForm.get('selectedTeacherId')?.value
+            "
+          >
+            Submit Notification
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="pe-5 py-3">
+  <div class="card px-5 py-3">
+    <mat-card-title>
+      <h2 class="py-2 border-bottom">
+        <i class="fa-solid fa-user"></i> User Details
+      </h2>
+    </mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="updateUserDetails()">
+        <div class="row mb-3">
+          <label for="username" class="col-sm-2 col-form-label">User Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="username" placeholder="User Name"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="mobile" class="col-sm-2 col-form-label">Mobile No.</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="mobile" placeholder="Mobile No"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="businessname" class="col-sm-2 col-form-label">Business Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="businessname" placeholder="Business Name"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="userrole" class="col-sm-2 col-form-label">User Role</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="userrole" placeholder="User Role"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="useraccess" class="col-sm-2 col-form-label">User Access</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="useraccess" placeholder="User Access"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="androidId" class="col-sm-2 col-form-label">Android ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="androidId" placeholder="Android ID"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="deviceInfo" class="col-sm-2 col-form-label">Device Info</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="deviceInfo" placeholder="Device Info"/>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="status" class="col-sm-2 col-form-label">Status</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="status" placeholder="Status"/>
+          </div>
+        </div>
+        <div fxLayoutGap="25px"><br>
+          <button type="button" class="btn btn-primary">
+            Update
+          </button>
+          <button type="button" class="btn btn-danger" routerLink="/users">Close</button>
+        </div>
+      </form>
+    </mat-card-content> 
+  </div>
+</div>

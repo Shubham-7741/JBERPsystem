@@ -1,0 +1,141 @@
+<mat-card class="text-center">
+  <mat-card-title>
+    <b>Welcome To Beats Academy Admin Panel</b>
+  </mat-card-title>
+</mat-card>
+
+<!-- *ngIf="data; else loadingSpinner" -->
+<div
+  class="pb-3"
+  fxLayout="row wrap"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-around center"
+  fxLayoutGap="5px"
+>
+  <mat-card class="example-card card-1">
+    <mat-card-header class="text-center">
+      <div mat-card-avatar class="example-header1-image"></div>
+      <mat-card-title style="font-size: 20px; display: flex"
+        >No. OF Students</mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p class="para">3556</p>
+      <!-- <p class="para">{{ data["trialBusiness"] }}</p> -->
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="example-card card-1">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header2-image"></div>
+      <mat-card-title style="font-size: 20px; display: flex"
+        >No. Of Class</mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <p class="para">12</p>
+      <!-- <p class="para">{{ data["activeBusiness"] }}</p> -->
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="example-card card-1">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header4-image"></div>
+      <mat-card-title style="font-size: 20px">No. OF Staff</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="para">50</p>
+      <!-- <p class="para">{{ data["totalBusiness"] }}</p> -->
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="main-div pt-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-4 mb-3">
+        <mat-form-field style="width: 100%">
+          <mat-label>Select School</mat-label>
+          <mat-select (selectionChange)="selectBatch($event.value)">
+            <mat-option *ngFor="let batch of batches" [value]="batch._id">
+              {{ batch.batchName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <section class="section about-section gray-bg" id="about">
+    <div class="container">
+      <!-- Presence Data -->
+      <div class="row">
+        <div class="col-12">
+          <h4 class="mb-4">Presence Data for Selected Batch</h4>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              Present Teachers
+            </div>
+            <div class="card-body">
+              <div *ngIf="presenceData?.presentTeacher?.length > 0">
+                <ol class="list-group">
+                  <li
+                    *ngFor="let teacher of presenceData.presentTeacher"
+                    class="list-group-item"
+                  >
+                    {{ teacher.name }}, <b>Task:-</b>
+                    <span>{{ teacher.task }}</span
+                    >, <b>Marked at:-</b>
+                    <span>{{ teacher?.time || "not found" }}</span>
+                  </li>
+                </ol>
+              </div>
+              <div *ngIf="presenceData?.presentTeacher?.length === 0">
+                <p class="text-center">No teachers marked present.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-danger text-white">
+              Not Marked Teachers
+            </div>
+            <div class="card-body">
+              <div *ngIf="presenceData?.notMarkedTeachers?.length > 0">
+                <ul class="list-group">
+                  <li
+                    *ngFor="let teacher of presenceData.notMarkedTeachers"
+                    class="list-group-item"
+                  >
+                    {{ teacher.name }}
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf="presenceData?.notMarkedTeachers?.length === 0">
+                <p class="text-center">All teachers marked present.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No teachers found message -->
+      <div *ngIf="!presenceData && selectedBatchId" class="text-center mt-4">
+        <p>No teachers found for the selected batch.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<ng-template #loadingSpinner>
+  <mat-spinner class="loading-spinner mx-auto" diameter="70"
+    >Loading!!!!</mat-spinner
+  >
+</ng-template>
+<!-- <div class="card my-2 me-4">
+  <h2 class="p-3" style="text-align: left; padding-left: 10px">Joinings</h2>
+  <div class="card-body chartBox mx-auto">
+    <canvas id="myChart"></canvas>
+  </div>
+</div> -->

@@ -1,0 +1,28 @@
+<div class="event-list-container">
+  <h2>All Events</h2>
+  <div class="events-grid">
+    <mat-card *ngFor="let event of events" class="event-card">
+      <div
+        [ngClass]="{
+          'single-image-container': event.media.length === 1,
+          'multi-image-container': event.media.length > 1
+        }"
+      >
+        <img *ngFor="let img of event.media" [src]="img" alt="Event image" />
+      </div>
+      <div class="event-content">
+        <mat-card-header>
+          <mat-card-title>{{
+            event.description || "No Description Available"
+          }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ event.description || "No Description Available" }}</p>
+          <a *ngIf="event.links" [href]="event.links" target="_blank"
+            >More Info</a
+          >
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+</div>

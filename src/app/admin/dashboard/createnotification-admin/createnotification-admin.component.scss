@@ -1,0 +1,45 @@
+.notification-form-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.form-type-selector {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification-form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.submit-btn {
+    min-width: 200px;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 768px) {
+    .notification-form-container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .notification-form {
+        padding: 20px;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,222 @@
+<div class="main-div pt-5">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-4 mb-3">
+        <mat-form-field style="width: 100%">
+          <mat-label><mat-icon>search</mat-icon> Search</mat-label>
+          <input matInput (keyup)="applyFilter($event)" #input />
+        </mat-form-field>
+      </div> -->
+
+      <div class="col-md-4 mb-3">
+        <mat-form-field style="width: 100%">
+          <mat-label>Select School</mat-label>
+          <mat-select (selectionChange)="selectBatch($event.value)">
+            <mat-option *ngFor="let batch of batches" [value]="batch._id">
+              {{ batch.batchName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-4 mb-3 mx-auto">
+        <button
+          mat-raised-button
+          color="primary"
+          class="w-100 h-100"
+          routerLink="/add_new_teacher"
+        >
+          Add New Teacher
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section class="section about-section gray-bg" id="about">
+    <div class="container">
+      <!-- Cards container -->
+      <div class="row">
+        <div
+          class="col-xl-4 col-lg-6 col-md-12 mb-4"
+          *ngFor="let teacher of teachers"
+        >
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="profile-image mb-3">
+                <img
+                  src="../../../../assets/image/pngwing.com.png"
+                  class="img-fluid rounded-circle"
+                  alt="Profile Image"
+                />
+              </div>
+              <h4 class="card-title">
+                <strong>{{ teacher.name }}</strong>
+              </h4>
+              <span class="text-muted d-block mb-2">{{
+                teacher.teachercategory
+              }}</span>
+              <p class="card-text">{{ teacher.address }}</p>
+              <div>
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  (click)="openModal(teacher._id, modal)"
+                >
+                  View More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No teachers found message -->
+      <div
+        *ngIf="teachers.length === 0 && selectedBatchId"
+        class="text-center mt-4"
+      >
+        <p>No teachers found for the selected batch.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<ng-template #modal let-modal>
+  <div class="modal-header p-2">
+    <h3 class="modal-title">Teachers Details</h3>
+    <button
+      type="button"
+      class="close text-danger p-2"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body p-5" style="max-height: 80vh; overflow-y: auto">
+    <div *ngIf="selectedTeacher">
+      <p><strong>Teacher Name:</strong> {{ selectedTeacher.name }}</p>
+      <p><strong>Teacher Email:</strong> {{ selectedTeacher.email }}</p>
+      <p><strong>Password:</strong> {{ selectedTeacher.pass }}</p>
+      <p><strong>Mobile:</strong> {{ selectedTeacher.mobile }}</p>
+      <p><strong>Address:</strong> {{ selectedTeacher.address }}</p>
+      <p><strong>Teacher Role:</strong> {{ selectedTeacher.role }}</p>
+      <p>
+        <strong>Starting Date:</strong>
+        {{ selectedTeacher.startingDate | date }}
+      </p>
+      <p>
+        <strong>Teacher Salary:</strong> {{ selectedTeacher.teacherSalary }}
+      </p>
+
+      <div class="modal-footer">
+        <div class="form-group">
+          <label for="monthSelect">Select Month:</label>
+          <select
+            class="form-control"
+            id="monthSelect"
+            [(ngModel)]="selectedMonth"
+          >
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="Saptember">Saptember</option>
+            <option value="October">October</option>
+            <!-- Add other months as needed -->
+          </select>
+        </div>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="viewPresentySheet(selectedTeacher._id)"
+        >
+          View Presenty Sheet
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="modal.dismiss('Cross click')"
+          [routerLink]="['/edit_teacher_details', selectedTeacher._id]"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Presenty Sheet Modal -->
+<ng-template #presentySheetModal let-modal>
+  <div class="modal-dialog modal-full-width modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Presenty Sheet</h4>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Photo</th>
+                <th>Tasks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let day of presentyData"
+                [ngClass]="{
+                  'table-success': day.status === 'present',
+                  'table-danger': day.status === 'absent'
+                }"
+              >
+                <td>{{ day.date }}</td>
+                <td>
+                  <span
+                    [ngClass]="{
+                      'badge badge-success': day.status === 'present',
+                      'badge badge-danger': day.status === 'absent'
+                    }"
+                  >
+                    {{ day.status }}
+                  </span>
+                </td>
+                <td>
+                  <img
+                    [src]="day.photo"
+                    alt="Photo"
+                    class="img-thumbnail clickable-photo"
+                    (click)="openImage(day.photo)"
+                    style="width: 70px; height: 60px"
+                  />
+                </td>
+                <td>
+                  <textarea rows="1" disabled>{{ day.description }}</textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Full Screen Image Modal -->
+  <div class="image-modal" *ngIf="imageToShow" (click)="closeImage()">
+    <span class="close">&times;</span>
+    <img class="modal-content" [src]="imageToShow" />
+  </div>
+</ng-template>

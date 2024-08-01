@@ -1,0 +1,98 @@
+<div class="admin-event-container">
+  <h2>{{ isEditMode ? "Update Event" : "Create Event" }}</h2>
+  <form [formGroup]="eventForm" (ngSubmit)="submitEvent()" class="event-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Event Name</mat-label>
+      <input matInput type="text" id="eventName" formControlName="eventName" />
+      <mat-error
+        *ngIf="
+          eventForm.get('eventName')?.invalid &&
+          (eventForm.get('eventName')?.dirty ||
+            eventForm.get('eventName')?.touched)
+        "
+      >
+        Event Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        id="description"
+        formControlName="description"
+      ></textarea>
+      <mat-error
+        *ngIf="
+          eventForm.get('description')?.invalid &&
+          (eventForm.get('description')?.dirty ||
+            eventForm.get('description')?.touched)
+        "
+      >
+        Description is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Links</mat-label>
+      <input matInput type="text" id="links" formControlName="links" />
+      <mat-error
+        *ngIf="
+          eventForm.get('links')?.invalid &&
+          (eventForm.get('links')?.dirty || eventForm.get('links')?.touched)
+        "
+      >
+        Links are required.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="images"><b>Images (Max 3)</b></label>
+      <input
+        type="file"
+        id="images"
+        (change)="onFileChange($event)"
+        accept="image/*"
+        multiple
+      />
+      <div class="image-preview" *ngIf="imagePreviews.length > 0">
+        <div
+          *ngFor="let img of imagePreviews; let i = index"
+          class="image-preview-item"
+        >
+          <img [src]="img" alt="Image Preview {{ i + 1 }}" />
+          <button
+            mat-button
+            color="warn"
+            type="button"
+            (click)="removeImage(i)"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+      <mat-error *ngIf="fileError">
+        {{ fileError }}
+      </mat-error>
+    </div>
+
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!eventForm.valid"
+      >
+        {{ isEditMode ? "Update" : "Create" }} Event
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        routerLink="/list_of_events"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</div>
